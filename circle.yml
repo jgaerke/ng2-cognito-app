@@ -15,7 +15,7 @@ test:
   override:
     - npm run lint
     - npm run test
-    - node ./etc/scripts/check-coverage.js 70
+    - node ./etc/scripts/check-coverage.js 20
 
 general:
   artifacts:
