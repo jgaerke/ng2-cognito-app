@@ -1,6 +1,5 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {AccountEvents} from "../../../account/event/account.events";
-import {CrossStorageHub, CrossStorageClient} from "cross-storage";
 import {
   CognitoUserPool,
   CognitoUserAttribute,
