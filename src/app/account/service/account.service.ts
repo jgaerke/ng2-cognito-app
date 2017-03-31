@@ -9,7 +9,7 @@ import {
 } from "amazon-cognito-identity-js";
 import {Observable} from "rxjs/Observable";
 import {Credentials} from "../model/credentials";
-import {Account} from "../model/Account";
+import {Account} from "../model/account";
 import {email} from "ng2-validation/dist/email";
 import {EventService} from "../../core/eventing/service/event.service";
 import {AccountEvents} from "../event/account.events";
