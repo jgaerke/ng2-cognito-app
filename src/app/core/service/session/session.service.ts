@@ -23,8 +23,7 @@ export class SessionService {
   constructor(private eventService: EventService,
               private cognitoService: CognitoService,
               private cookieService: CookieService,
-              private localStorageService: LocalStorageService,
-              @Inject(JSON) private JSON: JSON) {
+              private localStorageService: LocalStorageService) {
     this.session = {};
   }
 
@@ -109,10 +108,10 @@ export class SessionService {
       .forEach((key: string) => {
         this.remove(key);
       });
-    if(includeLocalStorageBackedKeys) {
+    if (includeLocalStorageBackedKeys) {
       this.localStorageService.clear(keyPatternsToClear);
     }
-    if(includeCookieBackedKeys) {
+    if (includeCookieBackedKeys) {
       console.log(keyPatternsToClear);
       this.cookieService.clear(keyPatternsToClear);
     }
@@ -159,12 +158,7 @@ export class SessionService {
           }) != undefined;
       })
       .forEach((key: string) => {
-        let localStorageEntry = this.localStorageService.get(key, (value) => {
-          if (value instanceof Object) {
-            return this.JSON.parse(value);
-          }
-          return value;
-        });
+        let localStorageEntry = this.localStorageService.get(key);
         this.add(key, localStorageEntry);
       });
     return this;

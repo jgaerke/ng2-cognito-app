@@ -1,8 +1,6 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable} from "@angular/core";
 import * as AWS from "aws-sdk";
 import {CognitoUserPool, CognitoUser, CognitoUserSession, ISignUpResult} from "amazon-cognito-identity-js";
-import {LocalStorageService} from "../storage/local-storage.service";
-import {SessionService} from "../session/session.service";
 
 @Injectable()
 export class CognitoService {
@@ -13,7 +11,7 @@ export class CognitoService {
   private identityPoolId: string;
   private userPool: CognitoUserPool;
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor() {
     AWS.config.region = this.region = 'us-east-2';
     this.userPoolId = 'us-east-2_Xdq47G1MW';
     this.clientId = '7uf0rdo1fo181c3qghheno62p1';

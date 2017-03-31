@@ -3,9 +3,6 @@ import {Injectable, Inject} from "@angular/core";
 @Injectable()
 export class CookieService {
 
-  constructor(@Inject(Document) private document: Document, @Inject(JSON) private JSON: JSON) {
-  }
-
   containsKey(key: string): boolean {
     return !!this.get(key);
   }
@@ -15,7 +12,7 @@ export class CookieService {
     let d = new Date();
     d.setTime(d.getTime() + expiresInMillis);
     let expires = "expires=" + d.toUTCString();
-    this.document.cookie = key + "=" + value + ";" + expires + ";domain=.checkngo.com;path=/";
+    document.cookie = key + "=" + value + ";" + expires + ";domain=.checkngo.com;path=/";
     return this;
   }
 
@@ -23,7 +20,7 @@ export class CookieService {
     let defaultMapper = (input) => input;
     mapper = mapper || defaultMapper;
     let name = key + "=";
-    let ca = this.document.cookie.split(';');
+    let ca = document.cookie.split(';');
     let value = null;
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
@@ -57,7 +54,7 @@ export class CookieService {
 
 
   getKeys(): Array<string> {
-    var cookies = this.document.cookie.split(';');
+    var cookies = document.cookie.split(';');
     var keys = [];
     for (var i = 0; i < cookies.length; i++) {
       keys.push(cookies[i].split('=')[0].trim());

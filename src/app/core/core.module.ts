@@ -13,15 +13,11 @@ import {LocalStorageService} from "./service/storage/local-storage.service";
   ],
   declarations: [],
   providers: [
-    {provide: Document, useValue: document},
-    {provide: JSON, useValue: JSON},
-    {provide: Storage, useValue: localStorage},
     CognitoService,
     CookieService,
     LocalStorageService,
-    SessionService,
-  ],
-  exports: [CognitoService, CookieService, LocalStorageService, SessionService]
+    SessionService
+  ]
 })
 export class CoreModule {
 }
