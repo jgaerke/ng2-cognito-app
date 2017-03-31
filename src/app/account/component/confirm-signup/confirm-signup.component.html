@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <form novalidate autocomplete="off" role="form" #f="ngForm" (ngSubmit)="onSubmit(f.value, f.valid)">
+      <div class="form-group">
+        <h2>Confirm Sign Up</h2>
+      </div>
+      <div c
+           lass="form-group">
+        <label class="control-label" for="confirmationCode">Confirmation Code</label>
+        <input id="confirmationCode" type="text" maxlength="50" class="form-control"
+               [ngModel] name="confirmationCode" #confirmationCode="ngModel">
+        <div *ngIf="confirmationCode.errors && f.submitted" class="alert alert-danger">
+          <div [hidden]="!confirmationCode.errors.required">
+            Confirmation code is required
+          </div>
+          <div [hidden]="!confirmationCode.errors.maxLength">
+            Confirmation code must not exceed 50 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-block" [disabled]="model.processing">Confirm</button>
+      </div>
+      <hr>
+      <p>
+        Can't find your code? <a [routerLink]="['/account/resend-code']"> <i class="fa fa-fw fa-group"></i>
+        ResendCode</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+
+

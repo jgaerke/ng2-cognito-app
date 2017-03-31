@@ -1,0 +1,29 @@
+machine:
+  node:
+      version: v6.9.5
+
+dependencies:
+   pre:
+     - rm -rf node_modules/
+     - npm cache clean
+
+compile:
+  override:
+    - npm run build
+
+test:
+  override:
+    - npm run lint
+    - npm run test
+    - node ./etc/scripts/check-coverage.js 70
+
+general:
+  artifacts:
+    - "coverage"
+    - "dist"
+
+deployment:
+  dev:
+    branch: master
+    commands:
+      - ./etc/scripts/deploy.sh dist
