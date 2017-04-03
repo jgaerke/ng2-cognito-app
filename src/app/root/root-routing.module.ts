@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {Routes, RouterModule} from "@angular/router";
-import {SessionInitializationGuard} from "../core/guard/session-initialization.guard";
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {SessionInitializationGuard} from '../core/guard/session-initialization.guard';
 const routes: Routes = [
   {
     path: '',

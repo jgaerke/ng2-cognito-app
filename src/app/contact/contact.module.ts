@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactExplorerComponent } from './component/contact-explorer/contact-explorer.component';
-import {ContactRoutingModule} from "./contact-routing.module";
+import {ContactRoutingModule} from './contact-routing.module';
 
 @NgModule({
   imports: [

@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {AccountEvents} from "../../../account/event/account.events";
-import {EventService} from "../../../core/eventing/service/event.service";
-import {ComponentBase} from "../../../core/component/component.base";
-import {ComponentEventHandler} from "../../../core/component/component.event.handler";
-import {AccountService} from "../../../account/service/account.service";
-import {Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {AccountEvents} from '../../../account/event/account.events';
+import {EventService} from '../../../core/eventing/service/event.service';
+import {ComponentBase} from '../../../core/component/component.base';
+import {ComponentEventHandler} from '../../../core/component/component.event.handler';
+import {AccountService} from '../../../account/service/account.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',

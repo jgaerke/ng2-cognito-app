@@ -1,6 +1,5 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-
-import { SessionInitializationGuard } from './session-initialization.guard';
+import {TestBed, inject} from '@angular/core/testing';
+import {SessionInitializationGuard} from './session-initialization.guard';
 
 describe('SessionInitializationGuard', () => {
   beforeEach(() => {

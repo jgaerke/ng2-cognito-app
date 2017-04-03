@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {Router, ActivatedRoute} from "@angular/router";
-import {AccountService} from "../../service/account.service";
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {AccountService} from '../../service/account.service';
 
 @Component({
   selector: 'app-confirm-signup',

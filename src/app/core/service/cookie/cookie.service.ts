@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class CookieService {
@@ -9,25 +9,25 @@ export class CookieService {
 
   add(key: string, value: any, expiresInMillis?: number): CookieService {
     expiresInMillis = expiresInMillis || 30 * 24 * 60 * 60 * 1000;
-    let d = new Date();
+    const d = new Date();
     d.setTime(d.getTime() + expiresInMillis);
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = key + "=" + value + ";" + expires + ";domain=.checkngo.com;path=/";
+    const expires = 'expires=' + d.toUTCString();
+    document.cookie = key + '=' + value + ';' + expires + ';domain=.checkngo.com;path=/';
     return this;
   }
 
   get(key: string, mapper?: (input: any) => any): string {
-    let defaultMapper = (input) => input;
+    const defaultMapper = (input) => input;
     mapper = mapper || defaultMapper;
-    let name = key + "=";
-    let ca = document.cookie.split(';');
+    const name = key + '=';
+    const ca = document.cookie.split(';');
     let value = null;
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) === ' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.indexOf(name) === 0) {
         value = c.substring(name.length, c.length);
       }
     }
@@ -35,16 +35,16 @@ export class CookieService {
   }
 
   remove(key: string): CookieService {
-    this.add(key, "", -1);
+    this.add(key, '', -1);
     return this;
   }
 
   clear(keyPatternsToClear: Array<string> = []): CookieService {
     this.getKeys()
       .filter((key: string) => {
-        return keyPatternsToClear.length == 0 || keyPatternsToClear.find((keyPatternToClear) => {
-            return key.indexOf(keyPatternToClear) == 0;
-          }) != undefined;
+        return keyPatternsToClear.length === 0 || keyPatternsToClear.find((keyPatternToClear) => {
+            return key.indexOf(keyPatternToClear) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
         this.remove(key);
@@ -54,9 +54,9 @@ export class CookieService {
 
 
   getKeys(): Array<string> {
-    var cookies = document.cookie.split(';');
-    var keys = [];
-    for (var i = 0; i < cookies.length; i++) {
+    const cookies = document.cookie.split(';');
+    const keys = [];
+    for (const i = 0; i < cookies.length; i++) {
       keys.push(cookies[i].split('=')[0].trim());
     }
     return keys;

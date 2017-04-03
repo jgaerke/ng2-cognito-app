@@ -1,8 +1,7 @@
-import {Injectable} from "@angular/core";
-import {CanLoad, Route} from "@angular/router";
-import {Observable} from "rxjs/Observable";
-import {SessionService} from "../service/session/session.service";
-import {LocalStorageService} from "../service/storage/local-storage.service";
+import {Injectable} from '@angular/core';
+import {CanLoad, Route} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {SessionService} from '../service/session/session.service';
 
 @Injectable()
 export class SessionInitializationGuard implements CanLoad {

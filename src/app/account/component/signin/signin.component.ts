@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit  {
   ngOnInit(): void {
     this.model = {
       processing: false
-    }
+    };
   }
 
   onSubmit(value: any, valid: boolean) {

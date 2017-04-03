@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.model = {
       processing: false
-    }
+    };
   }
 
   onSubmit(value: any, valid: boolean) {
@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
     this.accountService.register(new Credentials(value.email, value.password, false))
       .subscribe(
         () => {
-          console.log('sign up success')
+          console.log('sign up success');
           this.router.navigate(['account/confirm-sign-up']);
           this.model.processing = false;
         },

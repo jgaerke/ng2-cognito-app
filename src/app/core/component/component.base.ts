@@ -1,7 +1,7 @@
-import {ComponentEventHandler} from "./component.event.handler";
-import {OnInit, OnDestroy} from "@angular/core";
-import {Subscription} from "rxjs";
-import {EventService} from '../../core/eventing/service/event.service';
+import {ComponentEventHandler} from './component.event.handler';
+import {OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
+import {EventService} from '../eventing/service/event.service';
 
 export abstract class ComponentBase implements OnInit, OnDestroy {
 
@@ -17,7 +17,7 @@ export abstract class ComponentBase implements OnInit, OnDestroy {
   abstract getGlobalEventHandlers(): Array<ComponentEventHandler<any>>;
 
   ngOnInit(): void {
-    let eventHandlers = this.getGlobalEventHandlers();
+    const eventHandlers = this.getGlobalEventHandlers();
     if (eventHandlers) {
       eventHandlers.forEach((eventHandler) => {
         this.subscriptions.push(this.eventService.subscribe(eventHandler.key, eventHandler.handler));

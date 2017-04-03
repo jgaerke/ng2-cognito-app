@@ -1,6 +1,6 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {EventService} from "./service/event.service";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {EventService} from './service/event.service';
 
 @NgModule({
   imports: [

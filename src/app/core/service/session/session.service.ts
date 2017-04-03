@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {AccountEvents} from "../../../account/event/account.events";
+import {Injectable} from '@angular/core';
+import {AccountEvents} from '../../../account/event/account.events';
 import {
   CognitoUserPool,
   CognitoUserAttribute,
@@ -7,12 +7,12 @@ import {
   AuthenticationDetails,
   CognitoUserSession,
   ISignUpResult
-} from "amazon-cognito-identity-js";
-import {Observable} from "rxjs/Observable";
-import {CognitoService} from "../cognito/cognito.service";
-import {EventService} from "../../eventing/service/event.service";
-import {CookieService} from "../cookie/cookie.service";
-import {LocalStorageService} from "../storage/local-storage.service";
+} from 'amazon-cognito-identity-js';
+import {Observable} from 'rxjs/Observable';
+import {CognitoService} from '../cognito/cognito.service';
+import {EventService} from '../../eventing/service/event.service';
+import {CookieService} from '../cookie/cookie.service';
+import {LocalStorageService} from '../storage/local-storage.service';
 @Injectable()
 export class SessionService {
 
@@ -28,20 +28,20 @@ export class SessionService {
 
   initialize(): Observable<CognitoUserSession> {
     return Observable.create((observer) => {
-      let cognitoUserPool = this.cognitoService.getUserPool();
-      let cognitoUser = cognitoUserPool.getCurrentUser();
+      const cognitoUserPool = this.cognitoService.getUserPool();
+      const cognitoUser = cognitoUserPool.getCurrentUser();
 
 
-      if (cognitoUser == null) {
+      if (cognitoUser === null) {
         observer.next();
-        observer.complete();
+        observer.compconste();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, false);
         return;
       }
 
       if (this.userSession && this.userSession.isValid()) {
         observer.next();
-        observer.complete();
+        observer.compconste();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, {email: null, authenticated: false});
       }
 
@@ -58,7 +58,7 @@ export class SessionService {
         }
         this.userSession = session;
         observer.next(session);
-        observer.complete();
+        observer.compconste();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, {
           email: cognitoUser.getUsername(),
           authenticated: true
@@ -77,7 +77,7 @@ export class SessionService {
   }
 
   get(key: string, mapper?: (input: any) => any): any {
-    let defaultMapper = (input) => input;
+    const defaultMapper = (input) => input;
     mapper = mapper || defaultMapper;
     return mapper.call(this, this.session[key]);
   }
@@ -100,9 +100,9 @@ export class SessionService {
         keyPatternsToClear: Array<string> = []): SessionService {
     this.getKeys()
       .filter((key: string) => {
-        return keyPatternsToClear.length == 0 || keyPatternsToClear.find((keyPatternToClear) => {
-            return key.indexOf(keyPatternToClear) == 0;
-          }) != undefined;
+        return keyPatternsToClear.length === 0 || keyPatternsToClear.find((keyPatternToClear) => {
+            return key.indexOf(keyPatternToClear) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
         this.remove(key);
@@ -120,12 +120,12 @@ export class SessionService {
   loadFromCookies(keyPatternsToLoad: Array<string> = []): SessionService {
     this.cookieService.getKeys()
       .filter((key: string) => {
-        return keyPatternsToLoad.length == 0 || keyPatternsToLoad.find((keyPatternToLoad) => {
-            return key.indexOf(keyPatternToLoad) == 0;
-          }) != undefined;
+        return keyPatternsToLoad.length === 0 || keyPatternsToLoad.find((keyPatternToLoad) => {
+            return key.indexOf(keyPatternToLoad) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
-        let cookieEntry = this.cookieService.get(key);
+        const cookieEntry = this.cookieService.get(key);
         this.add(key, cookieEntry);
       });
     return this;
@@ -135,15 +135,15 @@ export class SessionService {
   persistToCookies(keyPatternsToPersist: Array<string> = [], expirationInMillis: number = 60 * 60 * 1000): SessionService {
     this.getKeys()
       .filter((key: string) => {
-        return keyPatternsToPersist.length == 0 ||
+        return keyPatternsToPersist.length === 0 ||
           keyPatternsToPersist.find((keyPatternToPersist) => {
-            return key.indexOf(keyPatternToPersist) == 0;
-          }) != undefined;
+            return key.indexOf(keyPatternToPersist) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
-        let mapper = (value) => {
+        const mapper = (value) => {
           return value;
-        }
+        };
         this.cookieService.add(key, this.get(key), expirationInMillis);
       });
     return this;
@@ -152,12 +152,12 @@ export class SessionService {
   loadFromLocalStorage(keyPatternsToLoad: Array<string> = []): SessionService {
     this.localStorageService.getKeys()
       .filter((key: string) => {
-        return keyPatternsToLoad.length == 0 || keyPatternsToLoad.find((keyPatternToLoad) => {
-            return key.indexOf(keyPatternToLoad) == 0;
-          }) != undefined;
+        return keyPatternsToLoad.length === 0 || keyPatternsToLoad.find((keyPatternToLoad) => {
+            return key.indexOf(keyPatternToLoad) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
-        let localStorageEntry = this.localStorageService.get(key);
+        const localStorageEntry = this.localStorageService.get(key);
         this.add(key, localStorageEntry);
       });
     return this;
@@ -166,15 +166,15 @@ export class SessionService {
   persistToLocalStorage(keyPatternsToPersist: Array<string> = []): SessionService {
     this.getKeys()
       .filter((key: string) => {
-        return keyPatternsToPersist.length == 0 ||
+        return keyPatternsToPersist.length === 0 ||
           keyPatternsToPersist.find((keyPatternToPersist) => {
-            return key.indexOf(keyPatternToPersist) == 0;
-          }) != undefined;
+            return key.indexOf(keyPatternToPersist) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
-        let mapper = (value) => {
+        const mapper = (value) => {
           return value;
-        }
+        };
         this.localStorageService.add(key, this.get(key));
       });
     return this;

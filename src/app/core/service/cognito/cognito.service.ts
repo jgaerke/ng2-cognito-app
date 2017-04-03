@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import * as AWS from "aws-sdk";
-import {CognitoUserPool, CognitoUser, CognitoUserSession, ISignUpResult} from "amazon-cognito-identity-js";
+import {Injectable} from '@angular/core';
+import * as AWS from 'aws-sdk';
+import {CognitoUserPool, CognitoUser, CognitoUserSession, ISignUpResult} from 'amazon-cognito-identity-js';
 
 @Injectable()
 export class CognitoService {

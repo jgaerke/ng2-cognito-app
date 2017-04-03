@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {
   CognitoUserPool,
   CognitoUserAttribute,
@@ -6,15 +6,15 @@ import {
   AuthenticationDetails,
   CognitoUserSession,
   ISignUpResult
-} from "amazon-cognito-identity-js";
-import {Observable} from "rxjs/Observable";
-import {Credentials} from "../model/credentials";
-import {Account} from "../model/account";
-import {email} from "ng2-validation/dist/email";
-import {EventService} from "../../core/eventing/service/event.service";
-import {AccountEvents} from "../event/account.events";
-import {CognitoService} from "../../core/service/cognito/cognito.service";
-import {SessionService} from "../../core/service/session/session.service";
+} from 'amazon-cognito-identity-js';
+import {Observable} from 'rxjs/Observable';
+import {Credentials} from '../model/credentials';
+import {Account} from '../model/account';
+import {email} from 'ng2-validation/dist/email';
+import {EventService} from '../../core/eventing/service/event.service';
+import {AccountEvents} from '../event/account.events';
+import {CognitoService} from '../../core/service/cognito/cognito.service';
+import {SessionService} from '../../core/service/session/session.service';
 
 @Injectable()
 export class AccountService {
@@ -27,9 +27,9 @@ export class AccountService {
     this.account = new Account(null, false);
     this.eventService.subscribe(AccountEvents.AuthenticationChangeEvent, {
       next: (data) => {
-        this.onAuthenticationChange(data)
+        this.onAuthenticationChange(data);
       }
-    })
+    });
   }
 
   onAuthenticationChange(data) {
@@ -37,14 +37,14 @@ export class AccountService {
   }
 
   register(credentials: Credentials): Observable<Account> {
-    let attributes = [
+    const attributes = [
       new CognitoUserAttribute({
         Name: 'email',
         Value: credentials.email
       })
     ];
     return Observable.create((observer) => {
-      let cognitoUserPool = this.cognitoService.getUserPool();
+      const cognitoUserPool = this.cognitoService.getUserPool();
       cognitoUserPool.signUp(credentials.email, credentials.password, attributes, null, (err: any, result: ISignUpResult) => {
         if (err) {
           observer.error(err);
@@ -59,9 +59,9 @@ export class AccountService {
 
   confirmRegistration(code): Observable<void> {
     return <Observable<void>>Observable.create((observer) => {
-      let cognitoUserPool = this.cognitoService.getUserPool();
-      let cognitoUser = cognitoUserPool.getCurrentUser();
-      if (cognitoUser == null) {
+      const cognitoUserPool = this.cognitoService.getUserPool();
+      const cognitoUser = cognitoUserPool.getCurrentUser();
+      if (cognitoUser === null) {
         alert('user not present');
         observer.error('user not present');
         return;
@@ -79,9 +79,9 @@ export class AccountService {
 
   resendRegistrationCode(email): Observable<void> {
     return <Observable<void>>Observable.create((observer) => {
-      let cognitoUserPool = this.cognitoService.getUserPool();
-      let cognitoUser = cognitoUserPool.getCurrentUser();
-      if (cognitoUser == null) {
+      const cognitoUserPool = this.cognitoService.getUserPool();
+      const cognitoUser = cognitoUserPool.getCurrentUser();
+      if (cognitoUser === null) {
         alert('user not present');
         observer.error('user not present');
         return;
@@ -99,8 +99,8 @@ export class AccountService {
 
   signIn(credentials: Credentials): Observable<Account> {
     return Observable.create((observer) => {
-      let cognitoUserPool = this.cognitoService.getUserPool();
-      let cognitoUser = new CognitoUser({
+      const cognitoUserPool = this.cognitoService.getUserPool();
+      const cognitoUser = new CognitoUser({
         Username: credentials.email,
         Pool: cognitoUserPool
       });
@@ -128,9 +128,9 @@ export class AccountService {
   }
 
   signOut() {
-    let cognitoUserPool = this.cognitoService.getUserPool();
-    let cognitoUser = cognitoUserPool.getCurrentUser();
-    if (cognitoUser == null) {
+    const cognitoUserPool = this.cognitoService.getUserPool();
+    const cognitoUser = cognitoUserPool.getCurrentUser();
+    if (cognitoUser === null) {
       return;
     }
     cognitoUser.signOut();

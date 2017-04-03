@@ -1,4 +1,4 @@
-import {Injectable, Inject} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class LocalStorageService {
@@ -13,7 +13,7 @@ export class LocalStorageService {
   }
 
   get(key: string, mapper?: (input: any) => any): string {
-    let defaultMapper = (input) => input;
+    const defaultMapper = (input) => input;
     mapper = mapper || defaultMapper;
     return mapper.call(this, localStorage.getItem(key));
   }
@@ -26,9 +26,9 @@ export class LocalStorageService {
   clear(keyPatternsToClear: Array<string> = []): LocalStorageService {
     this.getKeys()
       .filter((key: string) => {
-        return keyPatternsToClear.length == 0 || keyPatternsToClear.find((keyPatternToClear) => {
-            return key.indexOf(keyPatternToClear) == 0;
-          }) != undefined;
+        return keyPatternsToClear.length === 0 || keyPatternsToClear.find((keyPatternToClear) => {
+            return key.indexOf(keyPatternToClear) === 0;
+          }) !== undefined;
       })
       .forEach((key: string) => {
         this.remove(key);

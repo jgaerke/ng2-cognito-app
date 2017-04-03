@@ -1,7 +1,7 @@
-import {Subject, Subscription} from "rxjs/Rx";
-import {PartialObserver} from "rxjs/Observer";
-import {Event} from "../model/event";
-import {Injectable} from "@angular/core";
+import {Subject, Subscription} from 'rxjs/Rx';
+import {PartialObserver} from 'rxjs/Observer';
+import {Event} from '../model/event';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class EventService {
