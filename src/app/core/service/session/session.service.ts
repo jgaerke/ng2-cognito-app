@@ -34,14 +34,14 @@ export class SessionService {
 
       if (cognitoUser === null) {
         observer.next();
-        observer.compconste();
+        observer.complete();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, false);
         return;
       }
 
       if (this.userSession && this.userSession.isValid()) {
         observer.next();
-        observer.compconste();
+        observer.complete();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, {email: null, authenticated: false});
       }
 
@@ -58,7 +58,7 @@ export class SessionService {
         }
         this.userSession = session;
         observer.next(session);
-        observer.compconste();
+        observer.complete();
         this.eventService.publish(AccountEvents.AuthenticationChangeEvent, {
           email: cognitoUser.getUsername(),
           authenticated: true

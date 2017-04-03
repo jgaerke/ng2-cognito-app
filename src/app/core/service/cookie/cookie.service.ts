@@ -56,7 +56,7 @@ export class CookieService {
   getKeys(): Array<string> {
     const cookies = document.cookie.split(';');
     const keys = [];
-    for (const i = 0; i < cookies.length; i++) {
+    for (let i = 0; i < cookies.length; i++) {
       keys.push(cookies[i].split('=')[0].trim());
     }
     return keys;
